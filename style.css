@@ -1,0 +1,484 @@
+/* ===============================
+   GOOGLE FONT
+================================ */
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap");
+
+/* ===============================
+   ROOT VARIABLES
+================================ */
+:root{
+  --bg0:#070611;
+  --bg1:#140a22;
+  --a:#ff4fa3;
+  --b:#7c3aed;
+
+  --text:#f7f3ff;
+  --muted:rgba(247,243,255,.74);
+  --soft: rgba(255,214,232,.92);
+
+  --glass:rgba(255,255,255,.08);
+  --stroke:rgba(255,255,255,.16);
+  --shadow:0 24px 80px rgba(0,0,0,.45);
+  --r:22px;
+}
+
+/* ===============================
+   RESET + BASE
+================================ */
+*,
+*::before,
+*::after{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family: "Cormorant Garamond", serif;
+}
+
+html{
+  height:100%;
+  font-size:16px;
+  -webkit-text-size-adjust:100%;
+}
+
+body{
+  min-height:100%;
+  color:var(--text);
+  font-size: clamp(18px, 1.2vw + 14px, 21px);
+  line-height:1.7;
+  letter-spacing:.2px;
+
+  background:
+    radial-gradient(1200px 700px at 20% 10%, color-mix(in srgb, var(--a) 26%, transparent), transparent 55%),
+    radial-gradient(900px 600px at 80% 20%, color-mix(in srgb, var(--b) 22%, transparent), transparent 55%),
+    radial-gradient(900px 600px at 50% 100%, color-mix(in srgb, var(--a) 16%, transparent), transparent 50%),
+    linear-gradient(180deg, var(--bg1), var(--bg0));
+
+  overflow-x:hidden;
+}
+
+/* ===============================
+   TOPBAR
+================================ */
+.topbar{
+  position:fixed;
+  inset:0 0 auto 0;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:14px;
+  z-index:999;
+
+  backdrop-filter: blur(14px);
+  background: rgba(10,6,17,.28);
+  border-bottom:1px solid rgba(255,255,255,.06);
+
+  flex-wrap:wrap;
+}
+
+.brand{
+  font-weight:700;
+  font-size:1rem;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  flex:1 1 220px;
+}
+
+.top-actions{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  flex:1 1 220px;
+  justify-content:flex-end;
+  flex-wrap:wrap;
+}
+
+/* ===============================
+   THEME DROPDOWN
+================================ */
+.dd{ position:relative; z-index:1000; }
+
+.dd-btn{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 14px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.18);
+  background: linear-gradient(135deg,
+    color-mix(in srgb, var(--a) 22%, rgba(255,255,255,.06)),
+    color-mix(in srgb, var(--b) 18%, rgba(255,255,255,.06))
+  );
+  color:var(--text);
+  font-weight:600;
+  cursor:pointer;
+  box-shadow:0 14px 40px rgba(0,0,0,.25);
+}
+
+.dd-dot{
+  width:10px;height:10px;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--a),var(--b));
+}
+
+.dd-menu{
+  position:absolute;
+  top:calc(100% + 10px);
+  right:0;
+  min-width:180px;
+  max-width:min(92vw,220px);
+  padding:8px;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.16);
+  background:rgba(10,6,17,.92);
+  backdrop-filter:blur(16px);
+  box-shadow:0 20px 70px rgba(0,0,0,.55);
+  display:none;
+}
+
+.dd.open .dd-menu{ display:block; }
+
+.dd-item{
+  width:100%;
+  text-align:left;
+  border:none;
+  background:none;
+  color:var(--text);
+  padding:10px;
+  border-radius:14px;
+  font-weight:600;
+  cursor:pointer;
+}
+
+.dd-item:hover{ background:rgba(255,255,255,.08); }
+.dd-item.active{
+  background:linear-gradient(135deg,
+    color-mix(in srgb, var(--a) 22%, rgba(255,255,255,.06)),
+    color-mix(in srgb, var(--b) 18%, rgba(255,255,255,.06))
+  );
+}
+
+/* ===============================
+   STAGE + SCREENS
+================================ */
+.stage{
+  min-height:100vh;
+  padding:90px 14px 28px;
+  display:flex;
+  justify-content:center;
+}
+
+.screen{ display:none; width:min(980px,100%); }
+.screen-active{ display:block; }
+
+/* ===============================
+   CARDS
+================================ */
+.card{
+  background:var(--glass);
+  border:1px solid var(--stroke);
+  border-radius:var(--r);
+  box-shadow:var(--shadow);
+  padding:clamp(18px,2.2vw,26px);
+}
+
+.glass{
+  backdrop-filter: blur(16px) saturate(120%);
+}
+
+/* ===============================
+   TEXT
+================================ */
+.headline{
+  font-size:clamp(2.2rem,5.6vw,3.6rem);
+  font-weight:700;
+  line-height:1.05;
+  margin-bottom:10px;
+}
+
+.headline.small{
+  font-size:clamp(1.7rem,4.6vw,2.6rem);
+}
+
+.sub{
+  font-size:clamp(1.05rem,1.1vw,1.15rem);
+  color:var(--muted);
+  margin-bottom:18px;
+}
+
+.pill,.badge{
+  display:inline-block;
+  padding:8px 12px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.06);
+  font-weight:600;
+  font-size:.95rem;
+  margin-bottom:14px;
+}
+
+/* ===============================
+   INPUTS + BUTTONS
+================================ */
+.lock-row{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.input{
+  flex:1;
+  min-width:220px;
+  padding:12px 14px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(0,0,0,.14);
+  color:var(--text);
+  font-size:clamp(1.05rem,.8vw + .95rem,1.2rem);
+}
+
+.btn{
+  padding:12px 16px;
+  border-radius:14px;
+  font-size:clamp(1.05rem,.7vw + .95rem,1.15rem);
+  font-weight:600;
+  cursor:pointer;
+  border:none;
+}
+
+.btn-primary{
+  background:linear-gradient(135deg,var(--a),var(--b));
+  color:white;
+}
+
+.btn-outline{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.18);
+  color:var(--text);
+}
+
+.btn-ghost{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:999px;
+}
+/* ===============================
+   VALENTINE VIBE BACKGROUND
+   (paste at VERY END)
+================================ */
+
+/* 1) Илүү “romantic” gradient */
+body{
+  background:
+    radial-gradient(1200px 700px at 20% 10%, color-mix(in srgb, var(--a) 34%, transparent), transparent 55%),
+    radial-gradient(900px 600px at 80% 20%, color-mix(in srgb, var(--b) 28%, transparent), transparent 55%),
+    radial-gradient(900px 600px at 50% 110%, color-mix(in srgb, var(--a) 22%, transparent), transparent 55%),
+    linear-gradient(180deg, #1b0a20, #070611) !important;
+}
+
+/* 2) Soft glow давхарга */
+body::before{
+  content:"";
+  position:fixed;
+  inset:-120px;
+  pointer-events:none;
+  z-index:0;
+  background:
+    radial-gradient(520px 420px at 22% 22%, color-mix(in srgb, var(--a) 22%, transparent), transparent 60%),
+    radial-gradient(520px 420px at 80% 26%, color-mix(in srgb, var(--b) 18%, transparent), transparent 60%),
+    radial-gradient(520px 520px at 55% 85%, color-mix(in srgb, var(--a) 16%, transparent), transparent 65%);
+  filter: blur(22px);
+  opacity: .9;
+}
+
+/* 3) Twinkle hearts layer */
+.sparkles{
+  z-index:0 !important;
+  opacity:.14 !important;
+  transform: rotate(-8deg);
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Ctext x='12' y='72' font-size='22'%3E%E2%9C%A8%3C/text%3E%3Ctext x='92' y='112' font-size='22'%3E%F0%9F%92%97%3C/text%3E%3Ctext x='42' y='138' font-size='18'%3E%F0%9F%92%96%3C/text%3E%3C/svg%3E");
+  background-size: 160px 160px;
+  animation: floatSpark 16s linear infinite;
+}
+
+@keyframes floatSpark{
+  from{ background-position: 0 0; }
+  to{ background-position: 320px 520px; }
+}
+
+/* 4) Card-ууд дээр romantic highlight */
+.card{
+  position: relative;
+  z-index: 2; /* overlay дээр гарна */
+}
+
+.card::after{
+  content:"";
+  position:absolute;
+  inset:-1px;
+  border-radius: inherit;
+  pointer-events:none;
+  background: linear-gradient(135deg,
+    color-mix(in srgb, var(--a) 18%, transparent),
+    color-mix(in srgb, var(--b) 14%, transparent)
+  );
+  opacity:.55;
+  mask: linear-gradient(#000, #000) content-box, linear-gradient(#000, #000);
+  -webkit-mask: linear-gradient(#000, #000) content-box, linear-gradient(#000, #000);
+  padding:1px;
+}
+
+/* 5) Buttons дээр glow */
+.btn-primary{
+  box-shadow:
+    0 20px 55px color-mix(in srgb, var(--a) 22%, transparent),
+    0 10px 26px rgba(0,0,0,.35) !important;
+}
+
+/* 6) Confetti layer зөв давхаргад */
+.confetti{
+  z-index: 1 !important;
+}
+.stage{
+  z-index: 2 !important;
+  position: relative;
+}
+
+/* ===============================
+   LONG CONTENT
+================================ */
+.block{
+  margin-top:18px;
+  padding-top:16px;
+  border-top:1px solid rgba(255,255,255,.10);
+}
+
+.letter{
+  padding:clamp(14px,2vw,18px);
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(0,0,0,.12);
+}
+
+.type{
+  font-size:clamp(1.15rem,1.1vw + .95rem,1.45rem);
+  line-height:2;
+  white-space:pre-wrap;
+}
+
+/* ===============================
+   GALLERY + VIDEO
+================================ */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:12px;
+}
+
+.gallery img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  border-radius:16px;
+}
+
+.videos{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:12px;
+}
+
+.videos video{
+  width:100%;
+  border-radius:16px;
+}
+
+/* ===============================
+   FINAL + EFFECTS
+================================ */
+.final{
+  margin-top:16px;
+  padding:16px;
+  border-radius:18px;
+  background:rgba(255,255,255,.06);
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.confetti{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+}
+
+.sparkles{
+  position:fixed;
+  inset:-200px;
+  pointer-events:none;
+  opacity:.08;
+  background-size:140px 140px;
+}
+
+/* ===============================
+   MOBILE FIXES
+================================ */
+@media (max-width:420px){
+  .gallery{ grid-template-columns:1fr; }
+  .videos{ grid-template-columns:1fr; }
+  .btn,.input{ width:100%; }
+}
+
+
+/* ===== MOBILE: compact music toggle ===== */
+
+/* topbar илүү тэнцвэртэй */
+.topbar{
+  flex-wrap: nowrap !important;
+  align-items: center;
+}
+
+.brand{
+  flex: 1 1 auto !important;
+  max-width: 45vw !important;
+}
+
+/* actions мөрөнд багтаах */
+.top-actions{
+  flex: 0 0 auto !important;
+  gap: 8px !important;
+  flex-wrap: nowrap !important;
+}
+
+/* ✅ music toggle-ыг жижиг pill болгох */
+#musicBtn.btn-ghost{
+  width: auto !important;
+  min-width: 108px;          /* богинохон */
+  max-width: 140px;          /* хэт урт болохгүй */
+  padding: 10px 12px !important;
+  font-size: 1rem !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  border-radius: 999px !important;
+}
+
+/* dropdown-ыг жаахан компакт */
+.dd-btn{
+  padding: 10px 12px !important;
+}
+
+/* extra жижиг дэлгэц дээр бүр жижиг */
+@media (max-width: 380px){
+  #musicBtn.btn-ghost{
+    min-width: 92px;
+    max-width: 120px;
+    padding: 9px 10px !important;
+  }
+}

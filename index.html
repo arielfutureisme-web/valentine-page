@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="mn">
+<head>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover" />
+  <title>💘 Secret Valentine</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+  
+</head>
+<body>
+
+  <canvas id="confetti" class="confetti" aria-hidden="true"></canvas>
+  <div class="sparkles" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <div class="brand">💝 Secret Valentine Page</div>
+
+    <div class="top-actions">
+      <!-- Theme dropdown -->
+      <div class="dd" id="themeDD">
+        <button class="dd-btn" type="button" id="ddBtn" aria-haspopup="true" aria-expanded="false">
+          <span class="dd-dot" aria-hidden="true"></span>
+          <span id="ddLabel">Pink</span>
+          <span class="dd-caret" aria-hidden="true">▾</span>
+        </button>
+
+        <div class="dd-menu" id="ddMenu" role="menu">
+          <button class="dd-item" data-theme="pink" type="button" role="menuitem">Pink</button>
+          <button class="dd-item" data-theme="violet" type="button" role="menuitem">Violet</button>
+          <button class="dd-item" data-theme="rose" type="button" role="menuitem">Rose</button>
+        </div>
+      </div>
+
+      <!-- Music -->
+      <button id="musicBtn" class="btn btn-ghost" type="button">Play 🎵</button>
+    </div>
+  </header>
+
+  <audio id="music" src="soudao.mp4" preload="auto" loop></audio>
+
+  <main class="stage">
+
+    <!-- PASSWORD -->
+    <section id="screen-lock" class="screen screen-active">
+      <div class="card glass">
+        <div class="pill">🔐 private link</div>
+        <h1 class="headline">Нууц код оруул 💌</h1>
+        <p class="sub">Hint: (чи өөрөө өгнө) — жишээ нь 0214</p>
+
+        <div class="lock-row">
+          <input id="pw" class="input" type="password" placeholder="Password" autocomplete="off" />
+          <button id="unlockBtn" class="btn btn-primary" type="button">Open</button>
+        </div>
+
+        <p id="pwErr" class="error"></p>
+      </div>
+    </section>
+
+    <!-- ASK -->
+    <section id="screen-ask" class="screen">
+      <div class="card glass">
+        <div class="pill">✨ зөвхөн чамд</div>
+        <h1 class="headline">Миний Валентин болооч? 💘</h1>
+        <p class="sub">Be my valentine please?</p>
+
+        <div class="cta-row" id="ctaRow">
+          <button id="yesBtn" class="btn btn-primary" type="button">Тийм 😭💗</button>
+          <button id="noBtn" class="btn btn-outline" type="button">Үгүй 🙃</button>
+        </div>
+
+        <p id="plea" class="plea"></p>
+      </div>
+    </section>
+
+    <!-- LOVE -->
+    <section id="screen-love" class="screen">
+      <div class="card glass big">
+        <h2 class="headline small">YEAAAHHH 💖</h2>
+      
+
+        <section id="sec-letter" class="block">
+          <div class="badge">💌 Захиа</div>
+          <div class="letter">
+            <p id="type" class="type"></p>
+          </div>
+          <div class="hint">👇</div>
+        </section>
+
+        <section id="sec-photos" class="block hidden-block">
+          <div class="badge">📸 Зургууд</div>
+          <div class="gallery">
+            <img src="photo1.jpg" alt="memory 1">
+            <img src="photo2.jpg" alt="memory 2">
+            <img src="photo3.jpg" alt="memory 3">
+          </div>
+          <div class="hint">👇</div>
+        </section>
+
+        <section id="sec-videos" class="block hidden-block">
+          <div class="badge">🎬</div>
+          <div class="videos">
+            <video controls playsinline preload="metadata" src="video2.mp4"></video>
+            <video controls playsinline preload="metadata" src="video3.mp4"></video>
+          </div>
+
+          <div class="final">
+            <div class="final-badge">💞</div>
+            <p class="final-text">Чамтай хамт байхад амьдрал илүү гоё болдог. Happy Valentine’s Day 💗</p>
+            <button id="restartBtn" class="btn btn-ghost" type="button">↺ Restart</button>
+          </div>
+        </section>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
